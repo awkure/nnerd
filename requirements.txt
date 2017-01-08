@@ -1,0 +1,6 @@
+Sphinx
+SciPy
+Statsmodels
+NumPy
+Theano
+Plotly
