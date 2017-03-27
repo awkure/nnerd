@@ -95,13 +95,6 @@ def load_data(
                     r_ += [j]
             r_  = np.array(r_)
 
-            #compr = int(params['compress_step'])
-            #if compr >= 1:
-            #    for p in range(r_.shape[0] // compr):
-            #        r2_ += [r_[p + compr]]
-            #    r_ = r2_.copy()
-
-
             if params['shuffle_bin_data']:
                 np.random.shuffle(r_)
 
@@ -132,6 +125,7 @@ def load_data(
             return  train, valid, test
         else:
             raise NotImplementedError
+
     except FileNotFoundError:
         print('Cannot find dataset directory. Stopped...')
         return

@@ -1,13 +1,13 @@
 ========================================================
 nnerd − an audio classification RNN
 ========================================================
-This project shows that deep learning algorithms can be further generalized to classify and generate audio files as well as people do.
+This project shows that deep learning algorithms can be further generalized to classify and generate audio files as well as people do. (Not really)
 
 ============
 Dependencies
 ============
-- FFmpeg
-- Python 3
+- ffmpeg
+- python 3
 
   - Sphinx
   - SciPy
@@ -18,7 +18,7 @@ Dependencies
 =============
 More overview
 =============
-This network is an example of the simple Recurrent Neural Network (RNN) which uses Long Short Term Memory (LSTM) architecture. I used binary as training data to speed up the validation.
+This network is an example of the simple Recurrent Neural Network (RNN) which uses Long Short Term Memory (LSTM) architecture. I used binary output as proceeded training data to speed up the validation. 
 
 =====
 Using
@@ -30,27 +30,28 @@ Installation
 
     $ git clone https://github.com/awkure/nnerd
     $ cd nnerd
-    $ pip install -r requirements.txt
+    $ make
 
 Starting
 --------
-Edit `config/config.py`, add your audio data inside `data/` directory and then start the network
+Edit `config/config.py`, then add your audio data inside `data/` directory and then start the network
 
 .. code:: shell
 
-    $ python3 start.py
+    $ make run
 
-After training the model would be saved inside `models/` folder you can visualize its history errors and weights (absolutely useless)
+After training the model would be saved inside `models/` folder you can visualize its history errors and weights using plotly.
 
 .. code:: shell
     
-    $ python3 visualize_model.py
+    $ make visualization 
 
 
 TODO:
 -----
-#. ⬜ Multithreading
-#. ⬜ Channels
-#. ⬜ More continuously refactoring
-#. ☑ Visualization
-#. ⬜ Optimizers
+#. - Multithreading
+#. - Audio channels
+#. - More continuously refactoring
+#. + Visualization
+#. - Add optimizers
+#. - Documentation

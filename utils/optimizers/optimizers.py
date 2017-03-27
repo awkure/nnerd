@@ -7,6 +7,7 @@ def optimizer(lr, tparams, grads, x, mask, y, cost):
     def mki(mes):
         natkf = np.asarray(0., dtype=theano.config.floatX)
         return [theano.shared(p.get_value() * natkf, name=mes % k) for k, p in tparams.items()]
+
     zgr   = mki('%s_grad')
     rp2   = mki('%s_rup2')
     rgr2  = mki('%s_rgrad2')
@@ -17,6 +18,7 @@ def optimizer(lr, tparams, grads, x, mask, y, cost):
     p_up  = [(p, p + ud) for p, ud in zip(tparams.values(), updir)]
     f_shr = theano.function([x, mask, y], cost, updates=zgup + rg2up, name='opt_f_shr')
     f_upd = theano.function([lr], [], updates=ru2up + p_up, on_unused_input='ignore',name='opt_f_upd')
+
     return f_shr, f_upd
 
 

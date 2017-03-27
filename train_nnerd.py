@@ -163,6 +163,7 @@ def train(
                     else:
                         params = unzip(tparams)
                     saveto = saveto.strip().lower()
+
                     if False: #os.path.exists(saveto+'.npz'): the fuck wrong with me
                         files = os.listdir(params_['model_dir'])
                         for idx in range(len(files)-1):
@@ -240,9 +241,9 @@ def train(
         np.savez(saveto, train_err = train_err,
                  valid_err = valid_err, test_err = test_err,
                  history_errs = history_errs, **best_p)
+
     print('Saved to: \'%s\'' % (os.getcwd() + '/' + saveto))
     print('The code run for %d epochs, with %d sec/epochs' %
           ((eidx + 1), int((end_time - start_time) / (float(eidx + 1)))))
-    print( ('Training took %.1fs' %
-            (end_time - start_time)), file=sys.stderr)
+    print( ('Training took %.1fs' % (end_time - start_time)), file=sys.stderr)
     return train_err, valid_err, test_err

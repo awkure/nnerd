@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import six.moves.cPickle as pickle
@@ -34,6 +35,7 @@ def load():
 
 def visualize(obj, filen):
     def line_(d1, d2):
+
         def make(data, name):
             data.resize(data.shape[0] * data.shape[1] // 2, 2)
             return go.Scattergl(
@@ -44,8 +46,10 @@ def visualize(obj, filen):
                 marker = dict(
                     line=dict(
                         width=1)))
+
         sc1 = make(d1, name="'W'")
         sc2 = make(d2, name="'U'")
+
         layout = dict(
             legend=dict(
                 y=.5,
@@ -59,6 +63,7 @@ def visualize(obj, filen):
                  layout=layout
                 ),
             filename='%s_weights.html' % filen)
+
     def m3dsc(data):
         np.random.shuffle(data)
         return plotly.offline.plot(
@@ -70,8 +75,8 @@ def visualize(obj, filen):
             filename='%s_history_errors.html' % filen)
 
     pt_ = os.getcwd() + '/models/visualization'
-    if not os.path.exists(pt_):
-        os.mkdir(pt_)
+    if not os.path.exists(pt_): os.mkdir(pt_)
+
     os.chdir(pt_)
     W = obj['lstm_W']
     U = obj['lstm_U']
@@ -83,10 +88,12 @@ def visualize(obj, filen):
 def main():
     files, path = load()
     it_   = 0
+
     print('Detected files:')
     for file in files:
         print('[%d] %s' % (it_, file[0]))
         it_ += 1
+
     while True:
         nu = input('Choose the file: ')
         try:
@@ -95,6 +102,7 @@ def main():
             break
         except IndexError:
             print('Type choose the file from 0 to', len(files) - 1)
+
     obj = np.load(path + fl[0])
     r = visualize(obj, fl[0][:-4])
     return obj
